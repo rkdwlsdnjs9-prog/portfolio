@@ -66,6 +66,35 @@ const PROJECTS_DATA = [
         result: "대규모 다중 스레드 동시 구매 테스트 환경 속에서도 수량 및 좌석 초과 판매율 0%의 완전무결한 동시성 제어를 달성하여 시스템 비즈니스 신뢰성을 극대화함."
       }
     ]
+  },
+  {
+    id: 3,
+    title: "LC-MS 기반 AI 신약 물질 분석 및 가상 스크리닝 시스템",
+    subtitle: "LC-MS 분석 데이터 정제부터 3D 분자 도킹 시뮬레이션까지 제공하는 연구용 플랫폼",
+    period: "2026.05 - 2026.06 (개인 프로젝트 / 기여도 100%)",
+    summary: "제약공학 도메인 지식과 AI 기술을 융합하여 LC-MS 실험 데이터를 정제하고, RAG 기반 AI 에이전트를 통해 약리기전을 분석하며, RDKit 및 py3Dmol을 활용한 3D 분자 도킹 시뮬레이션을 원스톱으로 제공하는 연구용 대시보드 플랫폼입니다.",
+    tags: ["Streamlit", "Python", "RDKit", "ChromaDB", "AnythingLLM", "py3Dmol", "Docker"],
+    architecture: ["LC-MS CSV", "Data Preprocessing", "RAG & Agent (ChromaDB)", "Cheminformatics (RDKit)", "3D Docking Visualizer (py3Dmol)"],
+    images: ["images/lcms-1.png", "images/lcms-2.png", "images/lcms-3.png", "images/lcms-4.png", "images/lcms-5.png"],
+    liveUrl: null,
+    githubUrl: null,
+    role: "• 제약공학 전공 도메인 지식을 바탕으로 질량분석기(LC-MS) 데이터의 노이즈 필터링 기준 및 Adduct 역산 알고리즘(deduce_adducts) 자체 설계 및 구현\n• Vector DB(ChromaDB)와 NCBI PubChem/PubMed API를 결합한 하이브리드 RAG 및 API Fallback 파이프라인 개발로 내부 지식 검색 환각(Hallucination) 차단\n• 단백질 결정 구조 좌표계와 화합물 좌표계를 기하학적으로 일치시켜 웹 3D 뷰어(py3Dmol) 상의 활성 부위 중앙에 리간드를 안착시키는 좌표 변환 알고리즘 구현 및 동기화",
+    troubleshooting: [
+      {
+        title: "3D 시각화 시 표적 단백질과 리간드 간 좌표 불일치로 인한 렌더링 오류 해결",
+        problem: "PubChem에서 다운로드한 화합물(SDF) 파일과 RCSB에서 다운로드한 표적 단백질(PDB) 파일을 py3Dmol을 통해 하나의 공간에 렌더링했을 때, 각 파일의 원점 기준 좌표가 너무 멀어 뷰어 상에 분자 구조가 보이지 않거나 두 객체가 서로 수백 Å 떨어져 렌더링되어 결합 시뮬레이션이 불가능한 현상이 발생함.",
+        cause: "단백질 결정 구조의 절대 좌표계와 독립적으로 생성된 화합물 로컬 좌표계가 동기화되지 않아 발생한 문제였습니다.",
+        solution: "1. PDB 파일 내 모든 아톰(ATOM, HETATM)의 3D 좌표 평균값을 계산하여 단백질 전체의 기하학적 중심 좌표(Px, Py, Pz)를 구함.\n2. 리간드 SDF 파일 원자들의 중심 좌표(Sx, Sy, Sz)를 계산한 후, 두 중심 간의 차이 벡터(Translation Vector) d = P - S를 유도.\n3. SDF 파일 내의 모든 원자 좌표에 이동 벡터 d를 더해주는 좌표 변환 알고리즘을 구현하여, 뷰어 로드 시 자동으로 단백질의 활성 부위 중앙에 리간드가 배치되도록 좌표를 강제 매핑하여 문제를 해결함.",
+        result: "단백질과 리간드가 가상 공간 내에서 정상적으로 매핑되어 두 분자 간의 상호작용 및 결합 구조를 정확한 물리적 거리 내에서 3D 시뮬레이션할 수 있게 됨."
+      },
+      {
+        title: "일반 거대언어모델(LLM)의 화학 구조(SMILES) Valence 규칙 위반 환각 문제 방어",
+        problem: "미지 물질 발굴 모드에서 일반 텍스트 기반 LLM에게 미지 분자의 SMILES 구조식을 제안받아 RDKit으로 3D Conformer를 생성하려 할 때, LLM이 탄소의 5가 결합이나 질소의 원자가 결합 규칙을 무시한 가짜 구조식을 생성하여 RDKit 엔진이 에러를 뿜으며 중단되는 현상이 잦았음.",
+        cause: "텍스트 생성 기반의 LLM은 통계적 패턴으로 글자를 나열하므로, 엄격한 물리화학적 결합 법칙(Valence Rule)을 완벽히 검증하여 문자열을 쓰기 어렵다는 한계가 있었음.",
+        solution: "1. 화학 분야에 특화되거나 구조 분자 DB API를 래핑한 하위 화학 에이전트(ChemLLM/ChEMBL API)를 파이프라인 전면에 배치.\n2. 이 하위 에이전트가 실험 질량에 근접하며 물리적으로 유효성이 검증된 분자 골격 구조식(Scaffold SMILES)을 1차적으로 먼저 설계하도록 제한.\n3. 검증된 구조식 뼈대를 기반으로 일반 LLM(AnythingLLM)에게 약리 작용 추론 및 분석 리포트 작성을 하도록 역할을 이원화함.",
+        result: "3D 분자 최적화 에러율을 0%로 낮춤과 동시에 화학적 정합성이 보장된 리간드 데이터를 바탕으로 신뢰성 높은 약리 기전 보고서를 추출하는 데 성공함."
+      }
+    ]
   }
 ];
 
