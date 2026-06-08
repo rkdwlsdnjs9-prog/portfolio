@@ -784,6 +784,11 @@ button {
   font-family: 'Inter', sans-serif;
 }
 
+body.light-mode .architecture-box {
+  background: var(--bg-secondary); /* 흰색 (#ffffff) */
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
 .architecture-flow {
   display: flex;
   align-items: center;
@@ -796,6 +801,10 @@ button {
   border-radius: 8px;
 }
 
+body.light-mode .architecture-flow {
+  background: var(--bg-primary); /* 밝은 연회색 (#f8fafc) */
+}
+
 .arch-node {
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -803,6 +812,12 @@ button {
   border: 1px solid var(--glass-border);
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+body.light-mode .arch-node {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
 }
 
 .arch-node.highlight {
