@@ -77,12 +77,12 @@ const PROJECTS_DATA = [
     architecture: ["LC-MS CSV", "Data Preprocessing", "RAG & Agent (ChromaDB)", "Cheminformatics (RDKit)", "3D Docking Visualizer (py3Dmol)"],
     images: ["images/lcms-1.png", "images/lcms-2.png", "images/lcms-3.png", "images/lcms-4.png", "images/lcms-5.png"],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: "https://github.com/rkdwlsdnjs9-prog/newdrug",
     role: "• 제약공학 전공 도메인 지식을 바탕으로 질량분석기(LC-MS) 데이터의 노이즈 필터링 기준 및 Adduct 역산 알고리즘(deduce_adducts) 자체 설계 및 구현\n• Vector DB(ChromaDB)와 NCBI PubChem/PubMed API를 결합한 하이브리드 RAG 및 API Fallback 파이프라인 개발로 내부 지식 검색 환각(Hallucination) 차단\n• 단백질 결정 구조 좌표계와 화합물 좌표계를 기하학적으로 일치시켜 웹 3D 뷰어(py3Dmol) 상의 활성 부위 중앙에 리간드를 안착시키는 좌표 변환 알고리즘 구현 및 동기화",
     troubleshooting: [
       {
         title: "3D 시각화 시 표적 단백질과 리간드 간 좌표 불일치로 인한 렌더링 오류 해결",
-        problem: "PubChem에서 다운로드한 화합물(SDF) 파일과 RCSB에서 다운로드한 표적 단백질(PDB) 파일을 py3Dmol을 통해 하나의 공간에 렌더링했을 때, 각 파일의 원점 기준 좌표가 너무 멀어 뷰어 상에 분자 구조가 보이지 않거나 두 객체가 서로 수백 Å 떨어져 렌더링되어 결합 시뮬레이션이 불가능한 현상이 발생함.",
+        problem: "PubChem에서 다운로드한 화합물(SDF) 파일과 RCSB에서 다운로드한 표적 단백질(PDB) 파일을 py3Dmol을 통해 하나의 공간에 렌더링했을 때, 각 파일의 원점 기준 좌표가 너무 멀어 뷰어 상에 분자 구조가 보이지 않거나 두 객체가 서로 수백 Å(Angstrom) 떨어져 렌더링되어 결합 시뮬레이션이 불가능한 현상이 발생함.",
         cause: "단백질 결정 구조의 절대 좌표계와 독립적으로 생성된 화합물 로컬 좌표계가 동기화되지 않아 발생한 문제였습니다.",
         solution: "1. PDB 파일 내 모든 아톰(ATOM, HETATM)의 3D 좌표 평균값을 계산하여 단백질 전체의 기하학적 중심 좌표(Px, Py, Pz)를 구함.\n2. 리간드 SDF 파일 원자들의 중심 좌표(Sx, Sy, Sz)를 계산한 후, 두 중심 간의 차이 벡터(Translation Vector) d = P - S를 유도.\n3. SDF 파일 내의 모든 원자 좌표에 이동 벡터 d를 더해주는 좌표 변환 알고리즘을 구현하여, 뷰어 로드 시 자동으로 단백질의 활성 부위 중앙에 리간드가 배치되도록 좌표를 강제 매핑하여 문제를 해결함.",
         result: "단백질과 리간드가 가상 공간 내에서 정상적으로 매핑되어 두 분자 간의 상호작용 및 결합 구조를 정확한 물리적 거리 내에서 3D 시뮬레이션할 수 있게 됨."
@@ -92,7 +92,7 @@ const PROJECTS_DATA = [
         problem: "미지 물질 발굴 모드에서 일반 텍스트 기반 LLM에게 미지 분자의 SMILES 구조식을 제안받아 RDKit으로 3D Conformer를 생성하려 할 때, LLM이 탄소의 5가 결합이나 질소의 원자가 결합 규칙을 무시한 가짜 구조식을 생성하여 RDKit 엔진이 에러를 뿜으며 중단되는 현상이 잦았음.",
         cause: "텍스트 생성 기반의 LLM은 통계적 패턴으로 글자를 나열하므로, 엄격한 물리화학적 결합 법칙(Valence Rule)을 완벽히 검증하여 문자열을 쓰기 어렵다는 한계가 있었음.",
         solution: "1. 화학 분야에 특화되거나 구조 분자 DB API를 래핑한 하위 화학 에이전트(ChemLLM/ChEMBL API)를 파이프라인 전면에 배치.\n2. 이 하위 에이전트가 실험 질량에 근접하며 물리적으로 유효성이 검증된 분자 골격 구조식(Scaffold SMILES)을 1차적으로 먼저 설계하도록 제한.\n3. 검증된 구조식 뼈대를 기반으로 일반 LLM(AnythingLLM)에게 약리 작용 추론 및 분석 리포트 작성을 하도록 역할을 이원화함.",
-        result: "3D 분자 최적화 에러율을 0%로 낮춤과 동시에 화학적 정합성이 보장된 리간드 데이터를 바탕으로 신뢰성 높은 약리 기전 보고서를 추출하는 데 성공함."
+        result: "3D 분자 최적화 에러율을 0%로 낮춤과 동시에 화학적 정합성이 보장된 리간드 데이터를 바탕으로 신뢰성 높은 약리 기전 보고서를 추출하고자 하였지만 아직 많은 개선이 필요함."
       }
     ]
   }
@@ -140,7 +140,7 @@ class App {
 
   toggleTheme() {
     const isLightMode = document.body.classList.toggle('light-mode');
-    
+
     if (isLightMode) {
       localStorage.setItem('theme', 'light');
       if (this.sunIcon) this.sunIcon.style.display = 'none';
@@ -150,7 +150,7 @@ class App {
       if (this.sunIcon) this.sunIcon.style.display = 'block';
       if (this.moonIcon) this.moonIcon.style.display = 'none';
     }
-    
+
     if (window.lucide) {
       window.lucide.createIcons();
     }
@@ -252,16 +252,16 @@ class App {
       </div>
     `;
     document.body.insertAdjacentHTML('beforeend', lightboxHtml);
-    
+
     this.lightbox = document.getElementById('image-lightbox');
     this.lightboxImg = document.getElementById('lightbox-img');
     this.lightboxClose = document.getElementById('lightbox-close');
     this.lightboxPrev = document.getElementById('lightbox-prev');
     this.lightboxNext = document.getElementById('lightbox-next');
-    
+
     this.lightboxProjectId = null;
     this.lightboxImageIndex = 0;
-    
+
     this.lightboxClose.addEventListener('click', () => this.closeLightbox());
     this.lightbox.addEventListener('click', (e) => {
       if (e.target === this.lightbox) {
@@ -276,7 +276,7 @@ class App {
       e.stopPropagation();
       this.navigateLightbox(1);
     });
-    
+
     window.addEventListener('keydown', (e) => {
       if (this.lightbox.style.display === 'flex') {
         if (e.key === 'Escape') this.closeLightbox();
@@ -291,7 +291,7 @@ class App {
     this.lightboxImageIndex = imageIndex;
     const project = PROJECTS_DATA.find(p => p.id === projectId);
     if (!project || !project.images || project.images.length === 0) return;
-    
+
     this.lightboxImg.src = project.images[imageIndex];
     this.lightbox.style.display = 'flex';
     setTimeout(() => {
@@ -309,7 +309,7 @@ class App {
   navigateLightbox(direction) {
     const project = PROJECTS_DATA.find(p => p.id === this.lightboxProjectId);
     if (!project || !project.images || project.images.length === 0) return;
-    
+
     this.lightboxImageIndex = (this.lightboxImageIndex + direction + project.images.length) % project.images.length;
     this.lightboxImg.src = project.images[this.lightboxImageIndex];
   }
@@ -317,13 +317,13 @@ class App {
   navigateCardSlider(projectId, direction) {
     const imgElement = document.getElementById(`project-img-${projectId}`);
     if (!imgElement) return;
-    
+
     const project = PROJECTS_DATA.find(p => p.id === projectId);
     if (!project || !project.images || project.images.length === 0) return;
-    
+
     let currentIndex = parseInt(imgElement.getAttribute('data-current-index') || '0');
     currentIndex = (currentIndex + direction + project.images.length) % project.images.length;
-    
+
     imgElement.src = project.images[currentIndex];
     imgElement.setAttribute('data-current-index', currentIndex);
   }
@@ -336,11 +336,11 @@ class App {
 
       const hasMultipleImages = project.images && project.images.length > 1;
       const initialImage = project.images && project.images.length > 0 ? project.images[0] : '';
-      
-      const prevBtnMarkup = hasMultipleImages 
+
+      const prevBtnMarkup = hasMultipleImages
         ? `<button class="slider-btn-prev" data-project-id="${project.id}" style="position:absolute; left:10px; z-index:10; background:rgba(15, 23, 42, 0.7); border:1px solid rgba(255,255,255,0.1); color:#fff; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; font-weight:bold;">&lt;</button>`
         : '';
-        
+
       const nextBtnMarkup = hasMultipleImages
         ? `<button class="slider-btn-next" data-project-id="${project.id}" style="position:absolute; right:10px; z-index:10; background:rgba(15, 23, 42, 0.7); border:1px solid rgba(255,255,255,0.1); color:#fff; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; font-weight:bold;">&gt;</button>`
         : '';
