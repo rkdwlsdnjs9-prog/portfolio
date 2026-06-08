@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="데이터 무결성과 사용자 경험을 모두 고려하는 신입 풀스택 개발자 강진원의 포트폴리오 웹사이트입니다.">
+  <meta name="keywords" content="풀스택 개발자, Fullstack Developer, 포트폴리오, 강진원, React, Spring Boot, Node.js">
+  <meta name="author" content="강진원 (JinWon Kang)">
+  <title>Jinwon Kang | Fullstack Developer Portfolio</title>
+
+  <!-- Custom Stylesheet with Cache Busting -->
+  <link rel="stylesheet" href="style.css?v=1.0.1">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       Header / Navigation Bar
+       ========================================================================== -->
+  <header class="header" id="main-header">
+    <div class="container nav-container">
+      <a href="#home" class="logo" id="nav-logo">
+        <i data-lucide="terminal" class="logo-icon"></i>
+        JW.DEV
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link active" id="link-home">Home</a>
+        <a href="#about" class="nav-link" id="link-about">About</a>
+        <a href="#skills" class="nav-link" id="link-skills">Skills</a>
+        <a href="#projects" class="nav-link" id="link-projects">Projects</a>
+        <a href="#contact" class="nav-link" id="link-contact">Contact</a>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" style="background:none; border:none; color:var(--text-muted); cursor:pointer; padding:5px; margin-left:15px; display:flex; align-items:center; justify-content:center; transition:color 0.2s;">
+          <i data-lucide="sun" id="theme-toggle-sun" style="width: 20px; height: 20px;"></i>
+          <i data-lucide="moon" id="theme-toggle-moon" style="width: 20px; height: 20px; display: none;"></i>
+        </button>
+      </nav>
+
+      <button class="hamburger" id="nav-hamburger" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         Hero Section (Home)
+         ========================================================================== -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="hero-left">
+          <div class="hero-tagline">
+            <i data-lucide="sparkles" class="icon-inline"
+              style="color: var(--accent-cyan); width: 18px; height: 18px;"></i>
+            Ready to Build & Scale
+          </div>
+          <h1 class="hero-title">
+            안녕하세요,<br>
+            데이터 무결성과 사용자 경험을 연결하는<br>
+            <span
+              style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">풀스택
+              개발자 강진원</span>입니다.
+          </h1>
+          <p class="hero-desc">
+            단순히 굴러가는 코드를 작성하기보다 데이터의 흐름과 무결성을 우선순위로 삼고 설계합니다.
+            문제를 마주했을 때 집요하게 파고들어 근본적인 원인을 도출해내는 과정에서 큰 보람을 느낍니다.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary" id="btn-hero-projects">
+              프로젝트 보기
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"
+              id="btn-hero-github">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-graphic" id="hero-graphic"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         About Me & Core Values Section
+         ========================================================================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+
+        <div class="about-grid">
+          <div class="about-info glass-card reveal" id="about-info-card">
+            <p class="about-summary">
+              "견고하게 채워진 백엔드와 직관적이고 매끄러운 프론트엔드의 유기적인 연동을 지향합니다."
+            </p>
+            <p class="text-secondary">
+              효율적인 데이터 모델링과 명확한 API 문서화는 협업의 속도를 배로 늘려준다고 믿습니다.
+              기술의 표면적인 사용법보다는 작동 원리에 집중하여 변화하는 비즈니스에 유연하게 대응할 수 있는 시스템 아키텍처를 고민합니다.
+            </p>
+
+            <div class="about-details">
+              <div class="about-detail-item">
+                <span class="about-detail-label">Name</span>
+                <span class="about-detail-value">강진원</span>
+              </div>
+              <div class="about-detail-item">
+                <span class="about-detail-label">Email</span>
+                <span class="about-detail-value">rkdwlsdnjs9@gmail.com</span>
+              </div>
+              <div class="about-detail-item">
+                <span class="about-detail-label">Education</span>
+                <span class="about-detail-value">제약공학과 </span>
+              </div>
+              <div class="about-detail-item">
+                <span class="about-detail-label">Phone Number</span>
+                <span class="about-detail-value">010-7254-3046</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="values-grid">
+            <div class="glass-card value-card reveal" id="value-card-1">
+              <div class="value-icon">
+                <i data-lucide="database"></i>
+              </div>
+              <div class="value-content">
+                <h3>Data Integrity (데이터 무결성)</h3>
+                <p>
+                  데이터의 정확성과 신뢰성이 보장되지 않는 시스템은 가치가 없다고 생각합니다.
+                  엄격한 제약조건, 정밀한 DB 락킹 설계, 유효성 검증을 최우선으로 고려합니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="glass-card value-card reveal" id="value-card-2">
+              <div class="value-icon">
+                <i data-lucide="bot"></i>
+              </div>
+              <div class="value-content">
+                <h3>AI-Driven Vibe Coding</h3>
+                <p>
+                  AI 어시스턴트와의 유기적인 호흡(Vibe)을 통해 기획부터 고속 구현까지 최적의 효율을 이끌어냅니다. AI의 제안에만 의존하지 않고, 주도적으로 비즈니스 로직을 검토하고 엄밀히
+                  검증해 나갑니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="glass-card value-card reveal" id="value-card-3">
+              <div class="value-icon">
+                <i data-lucide="search-code"></i>
+              </div>
+              <div class="value-content">
+                <h3>Troubleshooting Obsession</h3>
+                <p>
+                  이유 없는 에러나 딜레이 현상을 만나면 오히려 집중력이 생깁니다.
+                  성능 측정 도구와 로그 분석을 활용하여 문제의 근본 원인을 추적해 해결합니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Tech Stack Section
+         ========================================================================== -->
+    <section class="section" id="skills">
+      <div class="container">
+        <h2 class="section-title">Tech Stack</h2>
+
+        <div class="skills-grid">
+          <!-- Frontend Category -->
+          <div class="glass-card reveal" id="skill-card-fe">
+            <h3 class="skill-category-title">
+              <i data-lucide="layout" style="color: var(--accent-cyan);"></i>
+              Frontend
+            </h3>
+            <div class="skill-badges">
+              <div class="skill-badge"><i data-lucide="globe" style="width: 16px; height: 16px;"></i>HTML5 / CSS3</div>
+              <div class="skill-badge"><i data-lucide="braces" style="width: 16px; height: 16px;"></i>JavaScript (ES6+)
+              </div>
+              <div class="skill-badge"><i data-lucide="paint-bucket" style="width: 16px; height: 16px;"></i>Tailwind CSS
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend Category -->
+          <div class="glass-card reveal" id="skill-card-be">
+            <h3 class="skill-category-title">
+              <i data-lucide="server" style="color: var(--accent-purple);"></i>
+              Backend
+            </h3>
+            <div class="skill-badges">
+              <div class="skill-badge"><i data-lucide="box" style="width: 16px; height: 16px;"></i>Spring Boot</div>
+              <div class="skill-badge"><i data-lucide="cup-soda" style="width: 16px; height: 16px;"></i>Java</div>
+            </div>
+          </div>
+
+          <!-- Database Category -->
+          <div class="glass-card reveal" id="skill-card-db">
+            <h3 class="skill-category-title">
+              <i data-lucide="database" style="color: var(--accent-blue);"></i>
+              Database
+            </h3>
+            <div class="skill-badges">
+              <div class="skill-badge"><i data-lucide="table" style="width: 16px; height: 16px;"></i>PostgreSQL</div>
+              <div class="skill-badge"><i data-lucide="table-2" style="width: 16px; height: 16px;"></i>MySQL</div>
+            </div>
+          </div>
+
+          <!-- DevOps / Tools Category -->
+          <div class="glass-card reveal" id="skill-card-devops">
+            <h3 class="skill-category-title">
+              <i data-lucide="wrench" style="color: var(--accent-pink);"></i>
+              DevOps & Tools
+            </h3>
+            <div class="skill-badges">
+              <div class="skill-badge"><i data-lucide="container" style="width: 16px; height: 16px;"></i>Docker</div>
+              <div class="skill-badge"><i data-lucide="git-branch" style="width: 16px; height: 16px;"></i>Git & GitHub
+              </div>
+              <div class="skill-badge"><i data-lucide="infinity" style="width: 16px; height: 16px;"></i>CI/CD Actions
+              </div>
+              <div class="skill-badge"><i data-lucide="infinity" style="width: 16px; height: 16px;"></i>Antigravity
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Projects Section
+         ========================================================================== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Dynamic Content Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Contact Section
+         ========================================================================== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+
+        <div class="contact-container glass-card reveal" id="contact-card">
+          <p class="contact-text">
+            새로운 기회와 성장을 가져다 줄 수 있는 모든 제안에 열려 있습니다.<br>
+            질문이나 협업 제안이 있으시다면 언제든지 편하게 메일이나 SNS로 연락주세요!
+          </p>
+
+          <div class="email-box" id="email-box">
+            <span class="email-text" id="email-text">rkdwlsdnjs9@gmail.com</span>
+            <button class="btn btn-primary btn-copy" id="btn-copy">
+              <i data-lucide="copy" style="width: 16px; height: 16px;"></i>
+              이메일 복사
+            </button>
+          </div>
+
+          <div class="social-links" id="social-links">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-item"
+              aria-label="GitHub">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-item"
+              aria-label="LinkedIn">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" class="social-item"
+              aria-label="Blog">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Footer Section
+       ========================================================================== -->
+  <footer
+    style="padding: 2.5rem 0; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+    <div class="container">
+      <p>&copy; 2026 Jinwon Kang. All Rights Reserved.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.8rem;">Designed & Built with Pure HTML, CSS, JavaScript</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Project Detail Modal Overlay
+       ========================================================================== -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-container" id="modal-container">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="modal-body" id="modal-content">
+        <!-- Dynamic Content Rendered by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Toast Notification
+       ========================================================================== -->
+  <div class="toast" id="toast">
+    <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
+    <span>이메일 주소가 클립보드에 복사되었습니다!</span>
+  </div>
+
+  <!-- ==========================================================================
+       JavaScript Libraries & Application Entry
+       ========================================================================== -->
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+  </script>
+  <!-- Main Logic with Cache Busting -->
+  <script src="app.js?v=1.0.1"></script>
+</body>
+
+</html>
