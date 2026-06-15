@@ -98,30 +98,37 @@ const PROJECTS_DATA = [
   },
   {
     id: 4,
-    title: "Smart Pharma HRM: 제약 분야 특화 인사/근태/급여 통합 관리 플랫폼",
-    subtitle: "제약 산업 특성을 반영한 인사(HR), 실시간 근태 정산 및 자동 급여 계산 ERP 통합 플랫폼",
+    title: "Public Sector HRM: 공공기관 특화 인사/근태/급여 통합 관리 ERP 플랫폼",
+    subtitle: "공공기관의 투명하고 체계적인 인사 관리(HR), 실시간 근태 정산 및 급여 자동화 통합 솔루션",
     period: "2026.05 - 2026.06 (개인 프로젝트 / 기여도 100%)",
-    summary: "50~150명 규모 제약 기업을 대상으로 한 ERP 플랫폼으로, 출퇴근 정보 연동을 통한 연장/심야 근무 수당 및 비과세 자동 정산, iText8 활용 PDF 급여명세서 발행, Gemini AI 기반 이력서 분석 및 SSE 실시간 알림 시스템을 제공하는 통합 HRM 솔루션입니다.",
+    summary: "공공기관 및 공기업의 예산·지침 기준에 맞춘 인사(HR), 실시간 근태 정산 및 자동 급여 계산, iText8 활용 PDF 급여명세서 발행, Gemini AI 기반 이력서 분석 및 SSE 실시간 알림 시스템을 제공하는 통합 HRM 솔루션입니다.",
     tags: ["Spring Boot 3.3", "Java 21", "MySQL", "MyBatis", "Spring Security", "Thymeleaf", "Gemini API", "iText8", "SSE"],
     architecture: ["Thymeleaf / Bootstrap 5", "Spring Boot 3.3.0", "MyBatis / Spring Security", "MySQL (Aiven Cloud)", "Gemini AI / iText8"],
     images: ["images/hrm-1.png", "images/hrm-2.png", "images/hrm-3.png"],
-    liveUrl: null,
+    liveUrl: "https://modokang-hrm-system.hf.space",
     githubUrl: "https://github.com/rkdwlsdnjs9-prog/HRM",
-    role: "• 제약 산업 특화 인사, 근태, 급여, 전자결재, 채용(ATS) 도메인 아키텍처 설계 및 DB 모델링 수행\n• MyBatis 트리 구조 쿼리(Recursive Common Table Expression)를 이용한 동적 부서 계층 구조 및 사원 정보 마스터 데이터 파이프라인 구현\n• 출퇴근 시간 기록 기반의 총 근무 시간 및 연장/야간 수당(1.5배/0.5배 가산) 자동 계산 연산 모듈 설계\n• iText8 라이브러리를 활용하여 한글 폰트(TrueType Font) 결합 및 테이블 스타일링이 가미된 개인별 급여명세서 PDF 파일 자동 생성 및 다운로드 기능 개발\n• Spring Security 6.x와 역할 기반 접근 제어(RBAC, ADMIN/HR/USER)를 통한 부서별 데이터 보안 필터링 적용\n• Server-Sent Events(SSE) 기술을 활용하여 전자결재 상신/승인 및 채용 분석 완료 시 즉시 딥링크를 전달하는 브라우저 토스트 실시간 알림 시스템 구현\n• Gemini Pro API 연동을 통해 지원자의 이력서 PDF 텍스트를 파싱하고 AI 종합 온보딩 평가서 리포팅 파이프라인 개발",
+    role: "• 공공기관 특화 인사, 근태, 급여, 전자결재, 채용(ATS) 도메인 아키텍처 설계 및 DB 모델링 수행\n• MyBatis 트리 구조 쿼리(Recursive Common Table Expression)를 이용한 동적 부서 계층 구조 및 사원 정보 마스터 데이터 파이프라인 구현\n• 출퇴근 시간 기록 기반의 총 근무 시간 및 연장/야간 수당(1.5배/0.5배 가산) 자동 계산 연산 모듈 설계\n• iText8 라이브러리를 활용하여 한글 폰트(TrueType Font) 결합 및 테이블 스타일링이 가미된 개인별 급여명세서 PDF 파일 자동 생성 및 다운로드 기능 개발\n• Spring Security 6.x와 역할 기반 접근 제어(RBAC, ADMIN/HR/USER)를 통한 부서별 데이터 보안 필터링 적용\n• Server-Sent Events(SSE) 기술을 활용하여 전자결재 상신/승인 및 채용 분석 완료 시 즉시 딥링크를 전달하는 브라우저 토스트 실시간 알림 시스템 구현\n• Gemini Pro API 연동을 통해 지원자의 이력서 PDF 텍스트를 파싱하고 AI 종합 온보딩 평가서 리포팅 파이프라인 개발",
     troubleshooting: [
       {
-        title: "iText8 기반 PDF 급여명세서 출력 시 한글 인코딩 깨짐 및 폰트 렌더링 오류",
-        problem: "급여 정산 완료 후 직원별 급여명세서를 PDF 파일로 동적 생성하여 내려받는 기능 테스트 중, 한글 문자열이 전부 누락되거나 사각형(Square Box) 또는 깨진 문자로 출력되어 명세서 내용 식별이 불가능한 오류가 발생함.",
-        cause: "iText8 라이브러리의 기본 폰트 엔진(Standard Fonts)은 영어권 아스키(ASCII) 폰트만 지원하고 있어, 한국어 UTF-8 인코딩 및 CJK 폰트 데이터를 명시적으로 정의해주지 않으면 한글 글꼴 맵을 정상적으로 렌더링하지 못하는 인코딩 누락이 근본적인 원인임.",
-        solution: "1. 스프링 부트 프로젝트 내 리소스 경로(classpath) 아래에 한국어를 완벽 지원하는 나눔고딕(NanumGothic.ttf) TrueType 글꼴 파일을 배치함.\n2. PdfFontFactory.createFont 메소드를 활용하여 나눔고딕 글꼴 파일과 문자셋 인코딩 방식을 'Identity-H'로 매핑한 폰트 인스턴스를 동적으로 바인딩함.\n3. PDF 테이블 렌더링 시점에 한글 폰트를 전역 셀 렌더러에 적용함으로써, 다중 바이트 문자열이 온전하게 표현되도록 구현을 보완함.",
-        result: "급여명세서 내의 한글 부서명, 사원명, 항목 명칭 및 금액 단위 등이 한글 깨짐 없이 가독성 높고 정밀한 레이아웃의 PDF 파일로 정상 발행되는 것을 검증함."
+        title: "다중 합격자 동시 온보딩 시 신규 사번 중복 충돌 및 등록 실패 해결",
+        problem: "채용 파이프라인(ATS)의 최종 합격자를 사원으로 전환하는 과정에서 여러 관리자가 거의 동시에 온보딩을 처리할 때 동일 사번이 중복 부여되면서 데이터베이스 기본키 제약조건 위반 예외(DuplicateKeyException)가 발생하고 일부 사원 등록이 실패하는 현상이 발생함.",
+        cause: "사번 자동 채번 프로세스가 DB 내 기존 사원 목록의 최대값을 조회(Read)한 뒤 1을 더해 삽입(Write)하는 비원자적인 방식으로 작동하여, 다중 스레드가 동일 시점에 같은 최대 사번을 읽는 경쟁 상태(Race Condition)가 유발됨.",
+        solution: "1. 사번 생성을 전담하는 테이블을 별도로 설계하고, 사번 채번 시 'SELECT ... FOR UPDATE' 구문을 사용한 비관적 락(Pessimistic Lock)을 적용하여 동시 접근 트랜잭션 간 직렬화를 보장함.\n2. 서비스 레이어의 사번 채번과 사원 등록 로직 전체를 단일 트랜잭션(@Transactional)으로 묶어 연산의 원자성을 보증함.",
+        result: "대량의 동시 합격자 등록 부하 테스트 시에도 사번 중복 예외 발생 빈도 0%를 기록하며 데이터의 정합성과 완벽한 무결성을 보장함."
       },
       {
-        title: "실시간 결재/공지 알림을 위한 SSE(Server-Sent Events) 커넥션의 HikariCP 커넥션 풀 고갈 현상 해결",
-        problem: "다수의 사원이 동시에 로그인하여 SSE 실시간 알림 채널을 구독하는 부하 테스트 시, HikariCP 커넥션이 모두 고갈되어 일반 HTTP API 조회 및 DB 저장 쿼리 전체가 타임아웃(Connection Timeout)을 겪으며 서버 가용성이 마비되는 중대한 병목 현상이 발생함.",
-        cause: "동기식 서블릿 처리 구조 하에서 SseEmitter를 생성하고 10분간 지속해서 연결을 유지할 때, HTTP 요청 스레드와 DB 커넥션이 1:1로 묶인 채 해제되지 않아 한정된 데이터베이스 커넥션 풀을 영구 점유하는 스레드 고갈 및 커넥션 누수 상태가 유발됨.",
-        solution: "1. Spring MVC의 비동기 요청 처리(Callable/DeferredResult/SseEmitter)를 활성화하고, SSE 구독(subscribe) 비즈니스 로직에서 DB 조회 쿼리가 완료된 직후 즉시 데이터베이스 커넥션을 해제하도록 트랜잭션 바운더리 영역을 분리함.\n2. ConcurrentHashMap을 통해 사원 ID와 SseEmitter 세션을 메모리 상에서 Thread-safe하게 관리하며, DB 연산이 수반되는 실시간 알림 발송 로직(send)은 전용 ThreadPoolTaskExecutor 비동기 스레드 풀로 위임하여 톰캣 메인 스레드 블로킹을 해제함.",
-        result: "동시 접속 테스트 시 HikariCP 커넥션 획득 대기 시간이 0ms에 수렴하게 되었으며, 수십 명의 사용자가 동시에 SSE 세션을 유지하는 상황에서도 일반 API 서비스 처리 가용성을 100% 보장함."
+        title: "실시간 결재/공지 알림을 위한 SSE 커넥션의 HikariCP 커넥션 풀 고갈 현상 해결",
+        problem: "다수 사용자가 동시에 로그인하여 SSE(Server-Sent Events) 실시간 알림 채널을 구독하는 환경에서 HikariCP 커넥션이 모두 고갈되어, 다른 일반 조회 및 결제 요청들이 타임아웃 예외를 겪으며 전체 서버 기능이 마비되는 현상이 나타남.",
+        cause: "동기식 서블릿 환경에서 SseEmitter 세션을 계속해서 유지하고 있는 동안, Spring의 기본 동작 및 DB 트랜잭션 유지 특성으로 인해 해당 HTTP 요청 스레드가 활성화되어 DB 커넥션 풀을 해제하지 않고 지속 점유하는 누수 현상이 발생함.",
+        solution: "1. Spring MVC의 비동기 요청 처리(DeferredResult, SseEmitter) 기능을 활용하고, SSE 구독 시점의 DB 조회 쿼리가 수행된 직후 커넥션을 반환하도록 트랜잭션 전파 범위를 좁게 분리함.\n2. 사원 ID와 SseEmitter 세션을 ConcurrentHashMap으로 메모리상에서 관리하고, 알림 발송용 DB 연산 및 전송 과정은 별도의 비동기 스레드 풀(ThreadPoolTaskExecutor)로 분리해 메인 톰캣 스레드의 블로킹을 우회함.",
+        result: "동시 접속 환경 테스트 시 HikariCP 커넥션 획득 대기 시간이 0ms로 대폭 단축되었으며, SSE 연결 누적 시에도 일반 API 가용성 100%를 안정적으로 달성함."
+      },
+      {
+        title: "iText8 기반 PDF 급여명세서 발행 시 한글 폰트 인코딩 누락 및 깨짐 현상 극복",
+        problem: "급여 정산 완료 후 개별 직원용 급여명세서 PDF 파일을 다운로드하는 화면에서 한글 문자가 모두 사각형 모양(Square Box)으로 깨지거나 유실되어 본문 내용을 인지할 수 없는 결함이 발견됨.",
+        cause: "iText8 라이브러리의 기본 글꼴 패키지인 Standard Fonts는 영어 아스키(ASCII) 문자 전용으로 구성되어 있으며, 한국어 멀티바이트(UTF-8) 폰트 라이브러리와 폰트 패밀리 매핑을 명시적으로 바인딩해주지 않아 렌더링에 실패함.",
+        solution: "1. 프로젝트의 클래스패스(classpath) 리소스 하위에 한글 완성형 자모를 완벽 지원하는 나눔고딕(NanumGothic.ttf) TrueType 글꼴 파일을 적재함.\n2. PdfFontFactory.createFont 메소드를 활용하여 해당 글꼴 파일 경로와 문자 인코딩셋(Identity-H)을 연동한 폰트 객체를 생성함.\n3. PDF 테이블 셀 렌더링 시점에 생성된 폰트 인스턴스를 명시적으로 바인딩함으로써 레이아웃에 한글이 올바르게 렌더링되도록 처리함.",
+        result: "급여명세서 내의 한글 이름, 부서명, 지급 항목 텍스트 등이 깨짐 현상 없이 고화질 및 정밀한 레이아웃의 PDF 문서로 정상 출력 및 다운로드되도록 보완함."
       }
     ]
   }
